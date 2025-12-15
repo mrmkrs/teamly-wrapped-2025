@@ -67,16 +67,53 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background:
+                radial-gradient(circle at 20% 50%, rgba(161, 217, 207, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(109, 98, 174, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(161, 217, 207, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(126, 191, 179, 0.5) 0%, transparent 50%),
+                linear-gradient(135deg, #a1d9cf 0%, #7ebfb3 50%, #9dc9d4 100%);
             flex-direction: column;
             text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(45deg, transparent 0%, rgba(161, 217, 207, 0.3) 50%, transparent 100%),
+                linear-gradient(-45deg, transparent 0%, rgba(109, 98, 174, 0.2) 50%, transparent 100%);
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 20px;
+            font-size: 6rem;
+            margin-bottom: 30px;
             animation: fadeInScale 1s ease-out;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            color: #6d62ae;
         }
 
         .hero p {
@@ -164,55 +201,52 @@
             z-index: 1;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
+        .features-intro {
+            justify-content: center;
+        }
+
+        .feature-detail {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .feature-content {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 80px 60px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.5s ease;
             z-index: 1;
         }
 
-        .feature-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            transform: translateX(-100px);
-            opacity: 0;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-card.visible {
-            animation: slideInRight 0.8s ease-out forwards;
+        .feature-content.visible {
+            animation: zoomIn 1s ease-out forwards;
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 6rem;
+            margin-bottom: 30px;
         }
 
         .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
             font-weight: bold;
         }
 
         .feature-description {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            line-height: 1.6;
+            font-size: 1.5rem;
+            opacity: 0.95;
+            line-height: 1.8;
         }
 
-        @keyframes slideInRight {
+        @keyframes zoomIn {
             to {
-                transform: translateX(0);
+                transform: scale(1);
                 opacity: 1;
             }
         }
@@ -350,7 +384,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 4rem;
             }
             .hero p {
                 font-size: 1.3rem;
@@ -361,8 +395,20 @@
             .stat-number {
                 font-size: 3rem;
             }
-            .features-grid, .stats-container {
+            .stats-container {
                 grid-template-columns: 1fr;
+            }
+            .feature-content {
+                padding: 50px 30px;
+            }
+            .feature-icon {
+                font-size: 4rem;
+            }
+            .feature-title {
+                font-size: 2rem;
+            }
+            .feature-description {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -371,6 +417,25 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="particles" id="particles"></div>
+        <svg width="117px" height="55px" viewBox="0 0 117 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>TeamlyLogo</title>
+            <defs>
+                <polygon id="path-1" points="0 0 116.218371 0 116.218371 37 0 37"></polygon>
+            </defs>
+            <g id="🖥️-Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="6b.-Ervaringen---Detail" transform="translate(-80.000000, -30.000000)">
+                    <g id="TeamlyLogo" transform="translate(80.000000, 30.000000)">
+                        <g id="logo/teamly">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Clip-2"></g>
+                            <path d="M113.621121,11.5518673 C113.621121,11.809795 113.627981,12.0540031 113.627981,12.3119308 L113.898257,12.3119308 C114.176764,12.3119308 114.381185,12.2227537 114.381185,11.9250393 C114.388045,11.6602518 114.217922,11.5450076 113.953135,11.5450076 C113.85847,11.5450076 113.729506,11.5518673 113.621121,11.5518673 L113.621121,11.5518673 Z M113.464718,11.1306769 L113.987434,11.1306769 C114.489569,11.1306769 114.842162,11.4366231 114.842162,11.90446 C114.842162,12.2296135 114.66518,12.4806814 114.427831,12.6027854 C114.569143,12.8126947 114.726918,13.0102563 114.888809,13.2201655 C114.923107,13.2613242 114.957406,13.3354098 114.957406,13.3971478 C114.957406,13.5055323 114.85451,13.607057 114.720058,13.607057 C114.618533,13.607057 114.569143,13.5658984 114.515637,13.4918128 L113.980574,12.7180297 C113.756945,12.7180297 113.729506,12.7111699 113.621121,12.7111699 C113.621121,12.927939 113.621121,13.0980615 113.627981,13.3697087 C113.627981,13.484953 113.573103,13.6001973 113.411212,13.6001973 C113.24109,13.607057 113.160144,13.5384593 113.160144,13.3765685 L113.160144,13.0102563 L113.160144,11.7754961 L113.160144,11.3954644 C113.160144,11.2198541 113.302828,11.1375367 113.464718,11.1306769 L113.464718,11.1306769 Z M113.911976,10.5544555 C112.895357,10.5544555 112.210751,11.3488179 112.210751,12.4463825 C112.210751,13.5384593 112.990022,14.2655958 113.992921,14.2655958 C115.004053,14.2655958 115.709238,13.3559891 115.69689,12.3722969 C115.676311,11.3076592 114.983473,10.5544555 113.911976,10.5544555 L113.911976,10.5544555 Z M116.219606,12.3517175 C116.219606,13.7085818 115.2757,14.7800792 113.946275,14.7800792 C112.819899,14.7800792 111.681176,13.9047714 111.681176,12.5081205 C111.681176,10.9756459 112.81304,10.0386002 113.959995,10.0454225 C115.174175,10.0523197 116.219606,10.9962253 116.219606,12.3517175 L116.219606,12.3517175 Z M83.6823033,1.97973213 L83.6877911,28.1525318 C83.6877911,33.0312064 87.6609749,37.0002744 92.5396495,37.0002744 C96.4332599,37.0002744 99.0783906,34.8229806 100.931903,30.9801326 C102.785415,27.1359126 106.658446,18.7656106 108.966076,13.4726054 C109.240467,12.926567 109.395498,12.4203153 109.395498,11.8372341 C109.395498,10.8233588 108.188177,10.0838747 107.057685,10.0838747 C106.005395,10.0838747 105.537558,10.7849441 105.147923,11.7590327 C102.773067,17.8752114 101.369557,21.3819302 100.590286,23.0570882 C99.4611662,20.4860431 98.5639072,18.1866453 95.6032267,11.0579633 C95.253378,10.3171072 94.8253278,10.0056732 93.9280687,10.0056732 C92.9155654,10.0056732 91.6698296,10.7465293 91.6698296,11.8372341 C91.6698296,12.460102 91.9030621,13.0061404 92.3311122,13.9404423 L97.2015551,24.4990137 L98.3608577,26.9328632 C97.6597883,28.2965872 97.1535367,29.3488772 96.6074983,30.2831791 C96.5114614,30.4505577 96.4209123,30.6042167 96.3317352,30.749644 C95.501702,31.958337 94.1119108,32.7513275 92.5396495,32.7513275 C90.0042753,32.7513275 87.9408539,30.687906 87.9408539,28.1525318 L87.9408539,2.3309528 C87.9408539,0.761435437 87.3440531,0 85.8486214,0 C84.6536479,0 83.7193461,0.635215508 83.6823033,1.97973213 L83.6823033,1.97973213 Z M52.7872319,11.5065928 C52.7872319,10.2745765 53.5349478,9.63936104 54.8794644,9.63936104 C55.9248947,9.63936104 56.5230674,10.2375337 56.6726106,11.2088784 L56.7466962,12.5163522 C57.680998,10.5736629 59.9598165,9.56390347 61.8284202,9.56390347 C64.3692823,9.56390347 66.1624284,10.9838777 66.8717296,12.8524814 C67.9185318,11.0209205 70.0107643,9.60231823 72.439126,9.56390347 C76.9967629,9.52686067 78.7899091,12.7029382 78.7899091,16.8503604 L78.7899091,20.6232387 C78.7899091,22.1557133 78.7528663,23.6868159 78.7158235,25.5183768 C78.6403659,26.8244787 77.4824353,27.124937 76.623591,27.124937 C75.4642884,27.124937 74.606816,26.5267643 74.606816,25.479962 C74.6424869,23.5372727 74.7549872,20.5861959 74.7549872,17.4855759 C74.7549872,15.0187995 74.0072714,13.1515677 71.7284529,13.1515677 C69.5991776,13.1515677 68.0296602,14.57017 67.9555746,17.1864896 C67.9185318,18.6064638 67.9185318,19.3528077 67.9185318,21.1473258 L67.9185318,25.0327045 C67.881489,26.3388063 67.1708159,27.124937 65.7508417,27.124937 C64.6669967,27.0865222 63.8465671,26.5267643 63.8465671,25.4058764 C63.8836099,22.1186705 63.9576956,21.0348254 63.9206528,17.0739892 C63.8465671,14.9447139 62.9122653,13.113153 60.781618,13.113153 C57.9059988,13.113153 56.8221537,15.3933434 56.8221537,18.6064638 L56.8591966,25.5183768 C56.8221537,26.6763074 55.8508091,27.124937 54.7299212,27.124937 C53.7585766,27.124937 52.7488172,26.6763074 52.7488172,25.4058764 C52.7488172,24.8447465 52.7117743,24.5470321 52.7488172,23.3877295 L52.8613175,17.7832903 C52.8613175,12.926567 52.7872319,12.2172659 52.7872319,11.5065928 L52.7872319,11.5065928 Z M39.0018206,23.7238587 C41.7663114,23.7238587 43.8969587,21.6329981 43.8969587,18.4569206 C43.8969587,15.0558423 41.6181402,13.2256533 39.1897786,13.2256533 C36.4993733,13.2256533 34.5196412,15.5044718 34.5196412,18.8300926 C34.5196412,21.6700409 36.4993733,23.7238587 39.0018206,23.7238587 L39.0018206,23.7238587 Z M47.7823374,20.6232387 C47.7823374,22.2297989 47.8193802,23.7993162 47.9318805,25.4058764 C47.9318805,26.750393 46.8850783,27.124937 45.8026052,27.124937 C44.569217,27.124937 44.2330879,26.1906351 43.9710443,24.2479458 C42.8501565,26.1906351 40.9074671,27.2360654 38.4791055,27.2360654 C33.5098818,27.2360654 30.372219,23.5002299 30.372219,18.9425929 C30.372219,13.4876969 34.1080545,9.71344665 38.9647778,9.71344665 C41.0570103,9.71344665 42.925614,10.6477485 44.0465019,12.3297662 C44.1205875,11.8811367 44.1960451,11.282964 44.2701307,10.9468349 C44.5321742,10.2375337 45.0548894,9.78890422 45.9137336,9.78890422 C47.4077935,9.78890422 47.856423,10.6477485 47.856423,12.0677227 L47.8193802,14.9447139 L47.7823374,20.6232387 Z M15.4672918,16.8874032 C17.4099812,16.8874032 21.5189886,16.8503604 23.088506,16.73786 C23.3505495,16.7008172 23.5371355,16.5883169 23.5371355,16.4017309 C23.5371355,14.3465412 21.818075,12.926567 19.9494712,12.926567 C17.447024,12.926567 15.6909206,14.9076711 15.4672918,16.8874032 L15.4672918,16.8874032 Z M19.986514,23.6127303 C21.3694454,23.6127303 22.6769193,23.1641007 23.6112211,22.6043428 C24.0598506,22.3422992 24.5084802,22.1186705 25.0682381,22.1186705 C25.9654972,22.1186705 26.7872987,23.0516004 26.7872987,24.0613598 C26.7872987,24.7706609 26.3386691,25.3304189 25.6664108,25.7790484 C24.2834794,26.6763074 22.5273761,27.2731082 19.6503849,27.2731082 C15.0186623,27.2731082 11.3569124,23.5756875 11.2814549,19.0537213 C11.2814549,13.8238261 15.0186623,9.60231823 19.8753856,9.60231823 C24.2464366,9.60231823 27.4225142,13.0390674 27.4225142,16.4758165 C27.4225142,18.4185058 27.1234278,19.3898505 24.5084802,19.4282653 C22.4148757,19.5023509 19.8753856,19.4653081 15.4288771,19.5023509 C15.5784202,21.7441265 17.447024,23.6127303 19.986514,23.6127303 L19.986514,23.6127303 Z M-0.000137195574,7.24804218 C0.0369056094,5.97761117 0.635078313,4.78126576 2.27868129,4.78126576 C3.5120695,4.78126576 3.95932707,5.45489603 3.95932707,6.64986948 C3.95932707,7.47167097 3.88524146,8.77914479 3.88524146,9.93844739 L7.09836181,9.93844739 C8.18220685,9.90003263 8.81742235,10.4982053 8.81742235,11.656136 C8.81742235,12.6658954 8.33175002,13.4122393 7.24790499,13.4122393 L3.88524146,13.4122393 L3.88524146,19.9880232 C3.88524146,22.2297989 4.33387099,23.5372727 5.8649736,23.5372727 C6.76223265,23.5372727 6.98586144,23.2381863 7.58403414,23.2381863 C8.55537881,23.2381863 9.0794659,24.1354454 9.0794659,24.9572469 C9.0794659,25.853134 8.78037955,26.3388063 8.25629246,26.6392646 C7.50994853,27.0494794 6.91177583,27.1990226 5.45475883,27.1990226 C1.90550933,27.1990226 -0.000137195574,25.2563332 -0.000137195574,20.5107383 L-0.000137195574,7.24804218 Z" id="Fill-1" fill="#3E245B" mask="url(#mask-2)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
         <h1>2025 Jaaroverzicht</h1>
         <p>Een jaar van innovatie, groei en geweldige prestaties</p>
         <div class="scroll-indicator">
@@ -405,36 +470,59 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Features Intro Section -->
+    <section class="features features-intro">
         <div class="particles" id="particles-features"></div>
         <h2>🚀 Grote Features</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🔍</div>
-                <div class="feature-title">Vernieuwde Zoekmachine UX</div>
-                <div class="feature-description">Complete vernieuwing van onze zoekervaring met bliksemsnelle resultaten en intuïtieve filters</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⏰</div>
-                <div class="feature-title">Berichten Inplannen</div>
-                <div class="feature-description">Publiceer je berichten op het perfecte moment met onze nieuwe inplanfunctie</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👥</div>
-                <div class="feature-title">Verbeterde Collegarijst</div>
-                <div class="feature-description">Vind en verbind met collega's makkelijker dan ooit met onze vernieuwde interface</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📅</div>
-                <div class="feature-title">Nieuwe Agendamodus</div>
-                <div class="feature-description">Mis nooit meer een evenement met onze prachtige nieuwe agendaweergave voor aankomende activiteiten</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📺</div>
-                <div class="feature-title">Narrowcasting Platform</div>
-                <div class="feature-description">Verstuur je boodschap via meerdere kanalen met ons gloednieuwe platform</div>
-            </div>
+    </section>
+
+    <!-- Feature 1: Search Engine -->
+    <section class="features feature-detail">
+        <div class="particles" id="particles-feature1"></div>
+        <div class="feature-content">
+            <div class="feature-icon">🔍</div>
+            <div class="feature-title">Vernieuwde Zoekmachine UX</div>
+            <div class="feature-description">Complete vernieuwing van onze zoekervaring met bliksemsnelle resultaten en intuïtieve filters</div>
+        </div>
+    </section>
+
+    <!-- Feature 2: Schedule Messages -->
+    <section class="features feature-detail" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div class="particles" id="particles-feature2"></div>
+        <div class="feature-content">
+            <div class="feature-icon">⏰</div>
+            <div class="feature-title">Berichten Inplannen</div>
+            <div class="feature-description">Publiceer je berichten op het perfecte moment met onze nieuwe inplanfunctie</div>
+        </div>
+    </section>
+
+    <!-- Feature 3: Colleague List -->
+    <section class="features feature-detail" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+        <div class="particles" id="particles-feature3"></div>
+        <div class="feature-content">
+            <div class="feature-icon">👥</div>
+            <div class="feature-title">Verbeterde Collegarijst</div>
+            <div class="feature-description">Vind en verbind met collega's makkelijker dan ooit met onze vernieuwde interface</div>
+        </div>
+    </section>
+
+    <!-- Feature 4: Calendar Mode -->
+    <section class="features feature-detail" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+        <div class="particles" id="particles-feature4"></div>
+        <div class="feature-content">
+            <div class="feature-icon">📅</div>
+            <div class="feature-title">Nieuwe Agendamodus</div>
+            <div class="feature-description">Mis nooit meer een evenement met onze prachtige nieuwe agendaweergave voor aankomende activiteiten</div>
+        </div>
+    </section>
+
+    <!-- Feature 5: Narrowcasting -->
+    <section class="features feature-detail" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+        <div class="particles" id="particles-feature5"></div>
+        <div class="feature-content">
+            <div class="feature-icon">📺</div>
+            <div class="feature-title">Narrowcasting Platform</div>
+            <div class="feature-description">Verstuur je boodschap via meerdere kanalen met ons gloednieuwe platform</div>
         </div>
     </section>
 
@@ -489,6 +577,11 @@
         createParticles('particles', 50);
         createParticles('particles-stats', 30);
         createParticles('particles-features', 30);
+        createParticles('particles-feature1', 30);
+        createParticles('particles-feature2', 30);
+        createParticles('particles-feature3', 30);
+        createParticles('particles-feature4', 30);
+        createParticles('particles-feature5', 30);
         createParticles('particles-coming', 30);
 
         // Intersection Observer for animations
@@ -511,7 +604,7 @@
         }, observerOptions);
 
         // Observe all animated elements
-        document.querySelectorAll('.stat-card, .feature-card, .announcement').forEach(el => {
+        document.querySelectorAll('.stat-card, .feature-content, .announcement').forEach(el => {
             observer.observe(el);
         });
 
