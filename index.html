@@ -490,19 +490,91 @@
         /* Footer */
         .footer {
             background: linear-gradient(135deg, var(--color-3-dark) 0%, var(--text-dark) 100%);
-            min-height: 50vh;
+            min-height: 100vh;
             flex-direction: column;
             text-align: center;
+            padding: 100px 40px;
         }
 
         .footer h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 5rem;
+            margin-bottom: 40px;
+            animation: grandEntrance 1.5s ease-out;
+            background: linear-gradient(45deg, var(--color-1), var(--color-2), var(--color-3), var(--color-1));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: grandEntrance 1.5s ease-out, gradientShine 4s ease infinite;
+            position: relative;
+            z-index: 1;
         }
 
         .footer p {
-            font-size: 1.3rem;
-            opacity: 0.8;
+            font-size: 1.5rem;
+            opacity: 0;
+            max-width: 900px;
+            margin: 15px auto;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer p:nth-of-type(1) {
+            animation-delay: 0.3s;
+        }
+
+        .footer p:nth-of-type(2) {
+            animation-delay: 0.6s;
+        }
+
+        .footer p:nth-of-type(3) {
+            animation-delay: 0.9s;
+        }
+
+        .footer p:nth-of-type(4) {
+            animation-delay: 1.2s;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+
+        @keyframes grandEntrance {
+            0% {
+                transform: scale(0.5) translateY(-50px);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes gradientShine {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 0.9;
+            }
         }
 
         /* Scroll indicator */
@@ -596,6 +668,15 @@
             .feature-description {
                 font-size: 1.2rem;
             }
+            .footer h2 {
+                font-size: 3rem;
+            }
+            .footer p {
+                font-size: 1.2rem;
+            }
+            .footer p:nth-of-type(4) {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -603,7 +684,6 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="particles" id="particles"></div>
-        <div class="confetti-container" id="confetti"></div>
         <svg width="234px" height="110px" viewBox="0 0 117 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-bottom: 40px;">
             <title>TeamlyLogo</title>
             <defs>
@@ -749,6 +829,7 @@
 
     <!-- Footer -->
     <section class="footer">
+        <div class="confetti-container" id="confetti"></div>
         <h2>Dank jullie wel! 🙌</h2>
         <p>Een enorme dank aan iedereen die heeft meegedacht, getest en waardevolle feedback heeft gegeven tijdens de ontwikkeling van onze nieuwste release.</p>
         <p>Jullie inzichten hebben ons geholpen om niet alleen bugs op te sporen, maar ook om de gebruikservaring naar een hoger niveau te tillen.</p>
