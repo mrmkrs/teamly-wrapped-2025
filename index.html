@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Jaaroverzicht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #0f0f1e;
+            color: #fff;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: fadeInScale 1s ease-out;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            animation: fadeInScale 1.5s ease-out;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            z-index: 1;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: transform 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .stat-card.visible {
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            flex-direction: column;
+        }
+
+        .features h2 {
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            z-index: 1;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            transform: translateX(-100px);
+            opacity: 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card.visible {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .feature-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        @keyframes slideInRight {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Coming Soon Section */
+        .coming-soon {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            flex-direction: column;
+        }
+
+        .coming-soon h2 {
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .announcements-container {
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .announcement {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 40px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transform: translateY(50px);
+            opacity: 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .announcement:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .announcement.visible {
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .announcement-icon {
+            font-size: 2.5rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .announcement-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2d3561 0%, #0f0f1e 100%);
+            min-height: 50vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 1.3rem;
+            opacity: 0.8;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 1;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 0;
+                top: 10px;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                top: 30px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.3rem;
+            }
+            .features h2, .coming-soon h2 {
+                font-size: 2.5rem;
+            }
+            .stat-number {
+                font-size: 3rem;
+            }
+            .features-grid, .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="particles" id="particles"></div>
+        <h1>2025 Jaaroverzicht</h1>
+        <p>Een jaar van innovatie, groei en geweldige prestaties</p>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="particles" id="particles-stats"></div>
+        <div class="stats-container">
+            <div class="stat-card" data-target="220">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Opgeloste Issues</div>
+            </div>
+            <div class="stat-card" data-target="84">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Gemelde Bugs</div>
+            </div>
+            <div class="stat-card" data-target="55">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Actieve Tenants</div>
+            </div>
+            <div class="stat-card" data-target="7736">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Gebruikers</div>
+            </div>
+            <div class="stat-card" data-target="6000">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Wekelijkse Emails</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="particles" id="particles-features"></div>
+        <h2>🚀 Grote Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <div class="feature-title">Vernieuwde Zoekmachine UX</div>
+                <div class="feature-description">Complete vernieuwing van onze zoekervaring met bliksemsnelle resultaten en intuïtieve filters</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <div class="feature-title">Berichten Inplannen</div>
+                <div class="feature-description">Publiceer je berichten op het perfecte moment met onze nieuwe inplanfunctie</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <div class="feature-title">Verbeterde Collegarijst</div>
+                <div class="feature-description">Vind en verbind met collega's makkelijker dan ooit met onze vernieuwde interface</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <div class="feature-title">Nieuwe Agendamodus</div>
+                <div class="feature-description">Mis nooit meer een evenement met onze prachtige nieuwe agendaweergave voor aankomende activiteiten</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📺</div>
+                <div class="feature-title">Narrowcasting Platform</div>
+                <div class="feature-description">Verstuur je boodschap via meerdere kanalen met ons gloednieuwe platform</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon Section -->
+    <section class="coming-soon">
+        <div class="particles" id="particles-coming"></div>
+        <h2>🎯 Komend in 2026</h2>
+        <div class="announcements-container">
+            <div class="announcement">
+                <div class="announcement-icon">❤️</div>
+                <div class="announcement-text">Meerdere emoji reacties - Druk jezelf uit met meer dan alleen 'Vind ik leuk': liefde, huilen en nog veel meer!</div>
+            </div>
+            <div class="announcement">
+                <div class="announcement-icon">📊</div>
+                <div class="announcement-text">Openbaar stemmen op polls - Laat iedereen hun mening geven met transparante gemeenschapspolls</div>
+            </div>
+            <div class="announcement">
+                <div class="announcement-icon">💬</div>
+                <div class="announcement-text">Chatgroep gesprekken - Blijf verbonden met teamdiscussies en directe notificaties</div>
+            </div>
+            <div class="announcement">
+                <div class="announcement-icon">📱</div>
+                <div class="announcement-text">Geoptimaliseerde mobiele UX - Naadloze ervaring op elk apparaat, altijd en overal</div>
+            </div>
+            <div class="announcement">
+                <div class="announcement-icon">🎓</div>
+                <div class="announcement-text">Onboarden nieuwe medewerkers - Verwelkom nieuwe teamleden met een soepele, begeleide ervaring</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <h2>Dank je wel! 🎉</h2>
+        <p>Op naar een nog beter 2026!</p>
+    </section>
+
+    <script>
+        // Create animated particles
+        function createParticles(containerId, count) {
+            const container = document.getElementById(containerId);
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles('particles', 50);
+        createParticles('particles-stats', 30);
+        createParticles('particles-features', 30);
+        createParticles('particles-coming', 30);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Animate numbers for stat cards
+                    if (entry.target.classList.contains('stat-card')) {
+                        animateNumber(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.stat-card, .feature-card, .announcement').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate counting numbers
+        function animateNumber(card) {
+            const target = parseInt(card.dataset.target);
+            const numberEl = card.querySelector('.stat-number');
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                numberEl.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
