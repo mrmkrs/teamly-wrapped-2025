@@ -5,17 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2025 Jaaroverzicht</title>
     <style>
+        :root {
+            --radius: 3px;
+            --text-dark: #1a171b;
+            --text-light: white;
+            --color-1-dark: #e12a53;
+            --color-1: #eb4373;
+            --color-1-light: rgb(245, 111, 149);
+            --color-1-wash: #fff8f5;
+            --error: var(--color-1);
+            --color-2-dark: #007991;
+            --color-2: #a1d9cf;
+            --color-2-wash: #f2faf5;
+            --color-3: #6d62ae;
+            --color-3-dark: #3e245b;
+            --color-3-wash: #e8e6f4;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        ::selection {
+            background-color: rgba(109, 98, 174, 0.33);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
-            background: #0f0f1e;
-            color: #fff;
+            background: var(--text-dark);
+            color: var(--text-light);
         }
 
         section {
@@ -68,11 +89,11 @@
         /* Hero Section */
         .hero {
             background:
-                radial-gradient(circle at 20% 50%, rgba(161, 217, 207, 0.8) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(109, 98, 174, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(161, 217, 207, 0.6) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(126, 191, 179, 0.5) 0%, transparent 50%),
-                linear-gradient(135deg, #a1d9cf 0%, #7ebfb3 50%, #9dc9d4 100%);
+                radial-gradient(circle at 20% 50%, var(--color-2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--color-3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, var(--color-2-wash) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--color-2-dark) 0%, transparent 50%),
+                linear-gradient(135deg, var(--color-2) 0%, var(--color-2-dark) 50%, var(--color-3) 100%);
             flex-direction: column;
             text-align: center;
             position: relative;
@@ -109,17 +130,18 @@
         }
 
         .hero h1 {
-            font-size: 6rem;
+            font-size: 4.5rem;
             margin-bottom: 30px;
             animation: fadeInScale 1s ease-out;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-            color: #6d62ae;
+            color: var(--color-3);
         }
 
         .hero p {
             font-size: 1.8rem;
             animation: fadeInScale 1.5s ease-out;
             opacity: 0.9;
+            color: var(--text-light);
         }
 
         @keyframes fadeInScale {
@@ -135,7 +157,7 @@
 
         /* Stats Section */
         .stats {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, var(--color-1) 0%, var(--color-1-dark) 100%);
         }
 
         .stats-container {
@@ -190,7 +212,7 @@
 
         /* Features Section */
         .features {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, var(--color-2) 0%, var(--color-2-dark) 100%);
             flex-direction: column;
         }
 
@@ -253,7 +275,7 @@
 
         /* Coming Soon Section */
         .coming-soon {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            background: linear-gradient(135deg, var(--color-3) 0%, var(--color-3-dark) 100%);
             flex-direction: column;
         }
 
@@ -307,7 +329,7 @@
 
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, #2d3561 0%, #0f0f1e 100%);
+            background: linear-gradient(135deg, var(--color-3-dark) 0%, var(--text-dark) 100%);
             min-height: 50vh;
             flex-direction: column;
             text-align: center;
@@ -383,8 +405,12 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero svg {
+                width: 150px !important;
+                height: 70px !important;
+            }
             .hero h1 {
-                font-size: 4rem;
+                font-size: 2.5rem;
             }
             .hero p {
                 font-size: 1.3rem;
@@ -417,7 +443,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="particles" id="particles"></div>
-        <svg width="117px" height="55px" viewBox="0 0 117 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg width="234px" height="110px" viewBox="0 0 117 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-bottom: 40px;">
             <title>TeamlyLogo</title>
             <defs>
                 <polygon id="path-1" points="0 0 116.218371 0 116.218371 37 0 37"></polygon>
@@ -437,7 +463,7 @@
             </g>
         </svg>
         <h1>2025 Jaaroverzicht</h1>
-        <p>Een jaar van innovatie, groei en geweldige prestaties</p>
+        <p>Wat een jaar! Samen hebben we grenzen verlegd, nieuwe ideeën werkelijkheid Teamly laten groeien. Hier zijn de hoogtepunten die 2025 zo bijzonder maakten:</p>
         <div class="scroll-indicator">
             <span></span>
         </div>
@@ -449,23 +475,23 @@
         <div class="stats-container">
             <div class="stat-card" data-target="220">
                 <div class="stat-number">0</div>
-                <div class="stat-label">Opgeloste Issues</div>
+                <div class="stat-label">Opgeloste Issues <br />sneller, slimmer, beter!</div>
             </div>
             <div class="stat-card" data-target="84">
                 <div class="stat-number">0</div>
-                <div class="stat-label">Gemelde Bugs</div>
+                <div class="stat-label">Gemelde Bugs <br />en allemaal aangepakt 💪</div>
             </div>
             <div class="stat-card" data-target="55">
                 <div class="stat-number">0</div>
-                <div class="stat-label">Actieve Tenants</div>
+                <div class="stat-label">Actieve Tenants <br />meer organisaties, meer samenwerking</div>
             </div>
             <div class="stat-card" data-target="7736">
                 <div class="stat-number">0</div>
-                <div class="stat-label">Gebruikers</div>
+                <div class="stat-label">Gebruikers <br />een groeiende community die ons platform omarmt</div>
             </div>
             <div class="stat-card" data-target="6000">
                 <div class="stat-number">0</div>
-                <div class="stat-label">Wekelijkse Emails</div>
+                <div class="stat-label">Wekelijkse Emails <br />communicatie op volle kracht</div>
             </div>
         </div>
     </section>
@@ -473,7 +499,7 @@
     <!-- Features Intro Section -->
     <section class="features features-intro">
         <div class="particles" id="particles-features"></div>
-        <h2>🚀 Grote Features</h2>
+        <h2>🚀 Grote Sprongen Vooruit</h2>
     </section>
 
     <!-- Feature 1: Search Engine -->
@@ -492,7 +518,7 @@
         <div class="feature-content">
             <div class="feature-icon">⏰</div>
             <div class="feature-title">Berichten Inplannen</div>
-            <div class="feature-description">Publiceer je berichten op het perfecte moment met onze nieuwe inplanfunctie</div>
+            <div class="feature-description">Publiceer je berichten op het perfecte moment met onze nieuwe inplan functie</div>
         </div>
     </section>
 
@@ -501,8 +527,8 @@
         <div class="particles" id="particles-feature3"></div>
         <div class="feature-content">
             <div class="feature-icon">👥</div>
-            <div class="feature-title">Verbeterde Collegarijst</div>
-            <div class="feature-description">Vind en verbind met collega's makkelijker dan ooit met onze vernieuwde interface</div>
+            <div class="feature-title">Verbeterde Collega-lijst</div>
+            <div class="feature-description">Vind en verbind sneller dan ooit met een frisse interface.</div>
         </div>
     </section>
 
@@ -511,7 +537,7 @@
         <div class="particles" id="particles-feature4"></div>
         <div class="feature-content">
             <div class="feature-icon">📅</div>
-            <div class="feature-title">Nieuwe Agendamodus</div>
+            <div class="feature-title">Nieuwe Agende weergave</div>
             <div class="feature-description">Mis nooit meer een evenement met onze prachtige nieuwe agendaweergave voor aankomende activiteiten</div>
         </div>
     </section>
@@ -522,7 +548,7 @@
         <div class="feature-content">
             <div class="feature-icon">📺</div>
             <div class="feature-title">Narrowcasting Platform</div>
-            <div class="feature-description">Verstuur je boodschap via meerdere kanalen met ons gloednieuwe platform</div>
+            <div class="feature-description">Verstuur je boodschap via meerdere kanalen met een gloednieuw platform</div>
         </div>
     </section>
 
