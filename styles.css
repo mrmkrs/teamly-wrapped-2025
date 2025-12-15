@@ -160,7 +160,7 @@ section {
 }
 
 .hero h1 {
-    font-size: 4.5rem;
+    font-size: 10vw;
     margin-bottom: 30px;
     animation: fadeInScale 1s ease-out;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
@@ -640,7 +640,7 @@ section {
         height: 150px !important;
     }
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 12vw;
     }
     .hero p {
         font-size: 1.3rem;
