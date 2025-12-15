@@ -129,6 +129,43 @@
             z-index: 1;
         }
 
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0.8;
+            animation: confettiFall linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            70% {
+                transform: translateY(70vh) rotate(504deg);
+                opacity: 1;
+            }
+            85% {
+                transform: translateY(85vh) rotate(612deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
         .hero h1 {
             font-size: 4.5rem;
             margin-bottom: 30px;
@@ -566,6 +603,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="particles" id="particles"></div>
+        <div class="confetti-container" id="confetti"></div>
         <svg width="234px" height="110px" viewBox="0 0 117 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-bottom: 40px;">
             <title>TeamlyLogo</title>
             <defs>
@@ -738,6 +776,44 @@
         createParticles('particles-feature4', 30);
         createParticles('particles-feature5', 30);
         createParticles('particles-coming', 30);
+
+        // Create confetti
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const colors = ['#eb4373', '#f56f95', '#6d62ae', '#a1d9cf', '#007991', '#3e245b'];
+            const shapes = ['square', 'circle', 'triangle'];
+
+            for (let i = 0; i < 80; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                if (shape === 'circle') {
+                    confetti.style.borderRadius = '50%';
+                } else if (shape === 'triangle') {
+                    confetti.style.width = '0';
+                    confetti.style.height = '0';
+                    confetti.style.backgroundColor = 'transparent';
+                    confetti.style.borderLeft = '5px solid transparent';
+                    confetti.style.borderRight = '5px solid transparent';
+                    confetti.style.borderBottom = '10px solid ' + colors[Math.floor(Math.random() * colors.length)];
+                }
+
+                const size = Math.random() * 8 + 6;
+                if (shape !== 'triangle') {
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                }
+
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
 
         // Intersection Observer for animations
         const observerOptions = {
