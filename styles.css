@@ -633,6 +633,102 @@ section {
     }
 }
 
+/* Customer Section Animations */
+.customer h1, .customer p {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure Amarijn logo and header are stacked vertically */
+.customer-big-winner {
+    flex-direction: column;
+    text-align: center;
+}
+
+.customer-big-winner img {
+    display: block;
+    max-width: 60%;
+    height: auto;
+    margin: 0 auto 16px auto; /* space below the logo */
+}
+
+.text-fade-in {
+    animation: textFadeIn 1.2s ease-out forwards;
+}
+
+.text-bounce-in {
+    animation: textBounceIn 1s ease-out forwards;
+}
+
+.text-slide-in {
+    animation: textSlideIn 1s ease-out forwards;
+}
+
+.text-scale-in {
+    animation: textScaleIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.text-fade-in-delayed {
+    animation: textFadeIn 1s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+@keyframes textFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes textBounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-50px);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes textSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    60% {
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes textScaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .hero svg {
