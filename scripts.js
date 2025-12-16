@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe all animated elements (non-customer)
-    document.querySelectorAll('.stat-card, .feature-content, .announcement').forEach(el => {
+    document.querySelectorAll('.stat-card, .feature-content, .announcement, .team-member').forEach(el => {
         observer.observe(el);
     });
 
