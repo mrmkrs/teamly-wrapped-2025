@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     createConfetti();
 
-    // Intersection Observer for animations
+    // Intersection Observer for generic visibility (stats/features/announcements)
     const observerOptions = {
         threshold: 0.2,
         rootMargin: '0px 0px -100px 0px'
@@ -71,9 +71,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe all animated elements
+    // Observe all animated elements (non-customer)
     document.querySelectorAll('.stat-card, .feature-content, .announcement').forEach(el => {
         observer.observe(el);
+    });
+
+    // Intersection Observer specifically for customer sections to start animations on visibility
+    const customerObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                // Unobserve so customer section animations only start once
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3, rootMargin: '0px 0px -15% 0px' });
+
+    // Observe each customer section
+    document.querySelectorAll('section.customer').forEach(section => {
+        customerObserver.observe(section);
     });
 
     // Animate counting numbers

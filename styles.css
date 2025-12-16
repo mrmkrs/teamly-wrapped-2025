@@ -160,11 +160,11 @@ section {
 }
 
 .hero h1 {
-    font-size: 10vw;
+    font-size: 8vw;
     margin-bottom: 30px;
     animation: fadeInScale 1s ease-out;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-    color: var(--color-3);
+    color: var(--color-1-light);
 }
 
 .hero p {
@@ -650,27 +650,31 @@ section {
     max-width: 60%;
     height: auto;
     margin: 0 auto 16px auto; /* space below the logo */
-}
-
-.text-fade-in {
-    animation: textFadeIn 1.2s ease-out forwards;
-}
-
-.text-bounce-in {
-    animation: textBounceIn 1s ease-out forwards;
-}
-
-.text-slide-in {
-    animation: textSlideIn 1s ease-out forwards;
-}
-
-.text-scale-in {
-    animation: textScaleIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-}
-
-.text-fade-in-delayed {
-    animation: textFadeIn 1s ease-out 0.5s forwards;
+    /* Visibility-gated animation baseline (no layout shift) */
     opacity: 0;
+    transform: scale(0.95) translateY(6px);
+}
+
+.text-fade-in { opacity: 0; }
+
+.text-bounce-in { opacity: 0; }
+
+.text-slide-in { opacity: 0; }
+
+.text-scale-in { opacity: 0; }
+
+.text-fade-in-delayed { opacity: 0; }
+
+/* Start text animations only when the parent customer section is in view */
+@media (prefers-reduced-motion: no-preference) {
+    .customer.in-view .text-fade-in { animation: textFadeIn 1.2s ease-out forwards; }
+    .customer.in-view .text-bounce-in { animation: textBounceIn 1s ease-out forwards; }
+    .customer.in-view .text-slide-in { animation: textSlideIn 1s ease-out forwards; }
+    .customer.in-view .text-scale-in { animation: textScaleIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+    .customer.in-view .text-fade-in-delayed { animation: textFadeIn 1s ease-out 0.5s forwards; }
+
+    /* Amarijn logo pop-in when section comes into view */
+    .customer-big-winner.in-view img { animation: logoPopIn 800ms ease-out forwards; }
 }
 
 @keyframes textFadeIn {
@@ -726,6 +730,36 @@ section {
     100% {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+/* Subtle pop-in for the Amarijn logo */
+@keyframes logoPopIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(6px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.02) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Reduced motion: show content without animations */
+@media (prefers-reduced-motion: reduce) {
+    .customer .text-fade-in,
+    .customer .text-bounce-in,
+    .customer .text-slide-in,
+    .customer .text-scale-in,
+    .customer .text-fade-in-delayed,
+    .customer-big-winner img {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
     }
 }
 
