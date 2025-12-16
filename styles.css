@@ -42,6 +42,99 @@ section {
     overflow: hidden;
 }
 
+/* Year Summary — horizontal "looking-out-the-window" passing colors */
+.year-summary {
+    position: relative;
+    isolation: isolate; /* ensure pseudo-elements stay behind content */
+    flex-direction: column;
+    text-align: center;
+}
+
+/* keep content above moving layers */
+.year-summary > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Background layers */
+.year-summary::before,
+.year-summary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    will-change: background-position, transform;
+}
+
+/* Back layer: wide, softly blended bands moving slowly */
+.year-summary::before {
+    /* repeating gradient to enable seamless horizontal scroll */
+    background-image: repeating-linear-gradient(
+        90deg,
+        /* reduced palette (4 colors) */
+        #4facfe 0px 385px,
+        #00f2fe 385px 770px,
+        #6d62ae 770px 1155px,
+        #f093fb 1155px 1540px
+    );
+    filter: blur(10px);
+    opacity: 0.55;
+    animation: scrollBgSlow 60s linear infinite;
+}
+
+/* Front layer: brighter, narrower bands moving faster for parallax */
+.year-summary::after {
+    background-image: repeating-linear-gradient(
+        90deg,
+        /* reduced palette (3 colors) */
+        rgba(235, 67, 115, 0.8) 0px 240px,
+        rgba(101, 233, 218, 0.8) 240px 480px,
+        rgba(109, 98, 174, 0.8) 480px 720px
+    );
+    mix-blend-mode: screen;
+    opacity: 0.5;
+    animation: scrollBgFast 30s linear infinite;
+}
+
+/* subtle top/bottom fade for readability */
+.year-summary {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.05) 25%,
+        rgba(0, 0, 0, 0.05) 75%,
+        rgba(0, 0, 0, 0.25)
+    );
+}
+
+@keyframes scrollBgSlow {
+    from { background-position: 0 0; }
+    to   { background-position: -1540px 0; }
+}
+
+@keyframes scrollBgFast {
+    from { background-position: 0 0; }
+    to   { background-position: -3080px 0; }
+}
+
+/* Reduced motion: keep a pleasant static gradient */
+@media (prefers-reduced-motion: reduce) {
+    .year-summary::before,
+    .year-summary::after {
+        animation: none;
+        filter: none;
+        opacity: 1;
+        mix-blend-mode: normal;
+    }
+    .year-summary::before {
+        background-image: linear-gradient(90deg,
+            /* reduced palette to match animated layers */
+            #4facfe, #00f2fe, #6d62ae, #f093fb
+        );
+    }
+    .year-summary::after { background: none; }
+}
+
 /* Animated background particles */
 .particles {
     position: absolute;
@@ -188,6 +281,13 @@ section {
 /* Stats Section */
 .stats {
     background: linear-gradient(135deg, var(--color-1) 0%, var(--color-1-dark) 100%);
+    flex-direction: column;
+    text-align: center;
+}
+
+.stats h1 {
+    margin-bottom: 1em;
+    font-size: 3.5rem;
 }
 
 .stats-container {
@@ -416,6 +516,7 @@ section {
     font-size: 2.5rem;
     margin-bottom: 25px;
     font-weight: bold;
+    text-align: center;
 }
 
 .feature-description {

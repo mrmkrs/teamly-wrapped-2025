@@ -61,12 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
 
-                // Animate numbers for stat cards
-                if (entry.target.classList.contains('stat-card')) {
-                    animateNumber(entry.target);
-                }
+                    // Animate numbers for stat cards
+                    if (entry.target.classList.contains('stat-card')) {
+                        animateNumber(entry.target);
+                    }
+                }, 300);
             }
         });
     }, observerOptions);
@@ -80,7 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const customerObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
+                setTimeout(() => {
+                    entry.target.classList.add('in-view');
+                }, 300);
                 // Unobserve so customer section animations only start once
                 obs.unobserve(entry.target);
             }
